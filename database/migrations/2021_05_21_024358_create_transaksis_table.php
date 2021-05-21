@@ -14,11 +14,11 @@ class CreateTransaksisTable extends Migration
     public function up()
     {
         Schema::create('transaksi', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('kode_transaksi');
-            $table->integer('anggota_id')->unsigned();
+            $table->unsignedBigInteger('anggota_id');
             $table->foreign('anggota_id')->references('id')->on('anggota')->onDelete('cascade');
-            $table->integer('buku_id')->unsigned();
+            $table->unsignedBigInteger('buku_id');
             $table->foreign('buku_id')->references('id')->on('buku')->onDelete('cascade');
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');

@@ -13,9 +13,9 @@ class CreateAnggotasTable extends Migration
      */
     public function up()
     {
-        Schema::create('anggotas', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
+        Schema::create('anggota', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('nim');
             $table->string('nama');
@@ -34,6 +34,6 @@ class CreateAnggotasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('anggotas');
+        Schema::dropIfExists('anggota');
     }
 }

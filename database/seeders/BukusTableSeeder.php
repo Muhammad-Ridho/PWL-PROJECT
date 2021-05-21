@@ -14,7 +14,7 @@ class BukusTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('anggota')->insert([
+        DB::table('buku')->insert([
             [
                 'id'  			=> 1,
                 'judul'  		=> 'Machine Learning Tingkat Dasar dan Lanjut',

@@ -17,27 +17,27 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'id'  			=> 1,
-                'name'  			=> 'Admin',
+                'name'  		=> 'Admin',
                 'username'		=> 'admin',
-                'email' 			=> 'admin@perpus.pwl',
+                'email' 		=> 'admin@perpus.pwl',
                 'password'		=> bcrypt('admin'),
-                'gambar'			=> NULL,
+                'gambar'		=> 'admin.png',
                 'level'			=> 'admin',
-                'remember_token'	=> NULL,
-                'created_at'      => \Carbon\Carbon::now(),
-                'updated_at'      => \Carbon\Carbon::now()
+                'remember_token'=> NULL,
+                'created_at'    => \Carbon\Carbon::now(),
+                'updated_at'    => \Carbon\Carbon::now()
               ],
               [
                 'id'  			=> 2,
-                'name'  			=> 'User1',
+                'name'  		=> 'User1',
                 'username'		=> 'user1',
-                'email' 			=> 'user1@perpus.pwl',
+                'email' 		=> 'user1@perpus.pwl',
                 'password'		=> bcrypt('user1'),
-                'gambar'			=> NULL,
-                'level'			=> 'user',
-                'remember_token'	=> NULL,
-                'created_at'      => \Carbon\Carbon::now(),
-                'updated_at'      => \Carbon\Carbon::now()
+                'gambar'		=> 'user1.png',
+                'level'			=> 'anggota',
+                'remember_token'=> NULL,
+                'created_at'    => \Carbon\Carbon::now(),
+                'updated_at'    => \Carbon\Carbon::now()
               ]
         ]);
     }

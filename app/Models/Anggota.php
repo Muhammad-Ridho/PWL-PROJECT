@@ -17,4 +17,12 @@ class Anggota extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Method One To Many 
+     */
+    public function transaksi()
+    {
+    	return $this->hasMany(Transaksi::class);
+    }
 }

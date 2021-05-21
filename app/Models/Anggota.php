@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Anggota extends Model
+{
+    protected $table = 'anggota';
+    protected $fillable = ['user_id', 'npm', 'nama', 'tempat_lahit', 'tgl_lahir', 'jk', 'prodi'];
+
+    /**
+     *  Method One To One
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}

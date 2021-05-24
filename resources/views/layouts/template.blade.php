@@ -65,7 +65,6 @@
             <i class="nav-icon fas fa-table"></i>
             <p>
               Transaksi
-              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
         </li>

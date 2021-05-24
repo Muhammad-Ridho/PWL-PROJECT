@@ -59,9 +59,16 @@
         </div>
       </li>
 
-      <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
-        
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <button type="button" class="btn btn-block btn-outline-danger">Keluar</button>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
+          </a>
+          
+        </li>
       </li>
       
     </ul>

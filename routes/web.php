@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controller\BukuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+
+Route::resource('buku', 'BukuController');

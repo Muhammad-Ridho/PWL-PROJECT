@@ -76,7 +76,7 @@
   <!-- /.navbar -->
 
     @section('sidebar')
-        @include('layouts.template',['user' => Auth::User()])
+        @include('layouts.sidebar',['user' => Auth::User()])
     @show
 
   <!-- Content Wrapper. Contains page content -->

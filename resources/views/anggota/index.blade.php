@@ -2,10 +2,21 @@
 
 @section('content')
 
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Data Master Anggota</h1>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+
 <!-- Content Wrapper. Contains page content -->
 <br>
 <div class="col-lg-2">
-    <a href="{{ route('anggota.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Anggota</a>
+  <a href="{{ route('anggota.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Anggota</a>
 </div>
 <br>
 <!-- RESPONSIVE HOVER TABLE -->
@@ -13,21 +24,6 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Data Master Anggota</h3>
-
-          <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-default">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- /.card-header -->
         <div class="card-body table-responsive p-0">
           <table class="table text-nowrap">
@@ -72,10 +68,10 @@
                                   <form action="{{ route('anggota.destroy', $data->id) }}" class="pull-left"  method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
+                                    <button type="button" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
+                                      Delete
+                                    </button>
                                   </form>
-                                  <button type="button" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
-                                    Delete
-                                  </button>
                                 </a>
                               </div>
                             </td>

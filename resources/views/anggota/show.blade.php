@@ -42,10 +42,14 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="card-footer">
+                        <a href="{{ URL::previous() }}">
+                            <button type="submit" class="btn btn-danger btn-block">Kembali</button>
+                        </a>
+                    </div>
                 </div>
             </section>
         </div>
     </div>
 </div>
-
 @endsection

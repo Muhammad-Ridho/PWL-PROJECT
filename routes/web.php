@@ -26,4 +26,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::resource('anggota', AnggotaController::class);
 
+Route::resource('buku', 'BukuController');
 

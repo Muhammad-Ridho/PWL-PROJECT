@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\BukuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::resource('anggota', AnggotaController::class);
 
-Route::resource('buku', 'BukuController');
+Route::resource('buku', BukuController::class);
 

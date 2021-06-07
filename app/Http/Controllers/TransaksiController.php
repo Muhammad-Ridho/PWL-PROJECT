@@ -6,6 +6,7 @@ use App\Models\Anggota;
 use App\Models\Buku;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TransaksiController extends Controller

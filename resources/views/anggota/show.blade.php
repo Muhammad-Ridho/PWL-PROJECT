@@ -38,7 +38,7 @@
                                 <b>Jenis Kelamin</b> <a class="float-right">{{$data->jk === "L" ? "Laki - Laki" : "Perempuan"}}</a>
                             </li>
                             <li class="list-group-item">
-                                <b>Program Studi</b> <a class="float-right">{{$data->prodi}}</a>
+                                <b>Program Studi</b> <a class="float-right">{{$data->prodi === "TI" ? "Teknik Informatika" : "Manajemen Informatika"}}</a>
                             </li>
                         </ul>
                     </div>

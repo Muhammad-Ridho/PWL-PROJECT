@@ -51,7 +51,11 @@
                             </a>
                             </td>
                             <td>
-                              {{$data->prodi}}
+                              @if($data->prodi == 'TI')
+                                Teknik Informatika
+                              @else
+                                Manajemen Informatika
+                              @endif
                             </td>
                             <td>
                               {{$data->jk === "L" ? "Laki - Laki" : "Perempuan"}}
@@ -64,7 +68,7 @@
                                 <a class="dropdown-item"  href="{{route('anggota.edit', $data->id)}}">
                                   <button type="button" class="btn btn-success">Edit</button>
                                 </a>
-                                <a class="dropdown-item"  href="{{route('anggota.show', $data->id)}}">
+                                <a class="dropdown-item">
                                   <form action="{{ route('anggota.destroy', $data->id) }}" class="pull-left"  method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}

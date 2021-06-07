@@ -20,6 +20,12 @@
     <link rel="stylesheet" href="{{asset('admin/dist/css/adminlte.min.css')}}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('admin/plugins/fontawesome-free/css/all.min.css')}}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    @section('css')
+
+    @show
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <!-- Site wrapper -->
@@ -103,5 +109,22 @@
   <script src="{{asset('admin/dist/js/adminlte.min.js')}}"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="{{asset('admin/dist/js/demo.js')}}"></script>
+  <!-- Select2 -->
+  <script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+  @section('js')
+
+  @show 
+
+  <script>
+    $(function () {
+      //Initialize Select2 Elements
+      $('.select2').select2()
+  
+      //Initialize Select2 Elements
+      $('.select2bs4').select2({
+        theme: 'bootstrap4'
+      })
+    })
+  </script>  
 </body>
 </html>

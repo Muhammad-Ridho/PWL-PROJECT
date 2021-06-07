@@ -23,10 +23,12 @@
   </div><!-- /.container-fluid -->
 </div>
 
+@if(Auth::user()->level == 'admin')
 <br>
 <div class="col-lg-2">
-  <a href="{{ route('anggota.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Anggota</a>
+  <a href="{{ route('anggota.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Buku</a>
 </div>
+@endif
 <br>
 
 <div class="content">
@@ -60,9 +62,11 @@
                       <th>
                         Rak
                       </th>
+                      @if(Auth::user()->level == 'admin')
                       <th>
                         Action
                       </th>
+                      @endif
                     </tr>
                   </thead>
 
@@ -97,6 +101,7 @@
                           {{$data->lokasi}}
                         </td>
                         <td>
+                          @if(Auth::user()->level == 'admin')
                           <div class="btn-group">
                             <a class="dropdown-item"  href="{{route('buku.show', $data->id)}}">
                               <button type="button" class="btn btn-info">Detail</button>
@@ -114,6 +119,7 @@
                               </form>
                             </a>
                           </div>
+                          @endif
                         </td>
                       </tr>
                         @endforeach

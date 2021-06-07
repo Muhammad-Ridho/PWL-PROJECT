@@ -30,7 +30,7 @@
             </p>
           </a>
         </li>
-        @if(Auth::user()->level == 'admin')
+        
         <li class="nav-item" >
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
@@ -41,15 +41,16 @@
           </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('anggota.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Anggota</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="{{ route('buku.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Buku</p>
+                </a>
+              </li>
+              @if(Auth::user()->level == 'admin')
+              <li class="nav-item">
+                <a href="{{route('anggota.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Anggota</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -58,9 +59,9 @@
                   <p>Data User</p>
                 </a>
               </li>
+              @endif
             </ul>
         </li>
-        @endif
         <li class="nav-item">
           <a href="{{route('transaksi.index')}}" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
@@ -69,6 +70,7 @@
             </p>
           </a>
         </li>
+        @if(Auth::user()->level == 'admin')
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>
@@ -92,6 +94,7 @@
             </li>
           </ul>
         </li>
+        @endif
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

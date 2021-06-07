@@ -14,10 +14,12 @@
     </div>
 
     <br>
+    @if(Auth::user()->level == 'admin')
     <div class="col-lg-2">
-      <a href="{{ route('anggota.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Anggota</a>
+      <a href="{{ route('anggota.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Transaksi</a>
     </div>
     <br>
+    @endif
 
     <div class="content">
         <div class="row">
@@ -34,6 +36,9 @@
                       <th>Tanggal Pinjam</th>
                       <th>Tanggal Kembali</th>
                       <th>Status</th>
+                      @if(Auth::user()->level == 'admin')
+                      <th>Action</th>
+                      @endif
                     </tr>
                   </thead>
                   <tbody>
@@ -62,8 +67,7 @@
                                     @endif
                                   </td>
                                   <td>
-                                    
-
+                                    @if(Auth::user()->level == 'admin')
                                     <div class="btn-group">
                                       <a class="dropdown-item"  href="{{route('anggota.show', $data->id)}}">
                                         <button type="button" class="btn btn-info">Detail</button>
@@ -81,6 +85,7 @@
                                         </button>
                                       </a>
                                     </div>
+                                    @endif
                                   </td>
                                 </tr>
                     @endforeach

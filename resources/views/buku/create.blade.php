@@ -162,7 +162,7 @@ $(document).ready(function() {
                                     <div>
                                         <img width="200" height="200" />
                                         <input type="file" class="uploads form-control" name="cover">
-                                    </dvi>
+                                    </div>
                                 </div>
         
                             </div>

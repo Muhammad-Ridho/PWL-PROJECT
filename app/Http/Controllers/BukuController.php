@@ -46,9 +46,9 @@ class BukuController extends Controller
         if(Auth::user()->level == 'user'){
             Alert::info('Oppss..', 'Anda dilarang masuk ke halaman ini.');
             return redirect()->to('/');
-
-            return view('buku.create');
         }
+
+        return view('buku.create');
     }
 
     /**

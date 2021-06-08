@@ -26,7 +26,7 @@
 @if(Auth::user()->level == 'admin')
 <br>
 <div class="col-lg-2">
-  <a href="{{ route('anggota.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Buku</a>
+  <a href="{{ route('buku.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Buku</a>
 </div>
 @endif
 <br>

@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 @section('content')
 <form method="POST" action="{{ route('buku.store') }}" enctype="multipart/form-data">
-    {{ csrf_field() }}
+{{ csrf_field() }}
 
     <div class="content">
         <div class="row justify-content-center">

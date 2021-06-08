@@ -181,13 +181,9 @@ $(document).ready(function() {
                                     <label for="email">COVER :</label>
                                     <div>
                                         <img width="200" height="200" />
-<<<<<<< HEAD
                                         <input type="file" class="uploads form-control" name="cover" style="margin-top: 20px;">
-                                    </dvi>
-=======
-                                        <input type="file" class="uploads form-control" name="cover">
                                     </div>
->>>>>>> 536870b9717f4ca24644b441148d275c71ca990f
+
                                 </div>
         
                             </div>

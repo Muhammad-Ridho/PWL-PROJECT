@@ -19,9 +19,11 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle"
-                                src="{{asset('admin/dist/img/user2-160x160.jpg')}}"
-                                alt="User profile picture">
+                            @if($data->user->gambar)
+                              <img src="{{url('images/user/'. $data->user->gambar)}}" alt="User profile picture" class="profile-user-img img-fluid img-circle" />
+                            @else
+                              <img src="{{url('images/user/default.png')}}" alt="User profile picture" class="profile-user-img img-fluid img-circle" />
+                            @endif
                         </div>
                         <h3 class="profile-username text-center">{{$data->nama}}</h3>
             

@@ -19,6 +19,11 @@
   <a href="{{ route('anggota.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Anggota</a>
 </div>
 <br>
+@if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+@endif
 <!-- RESPONSIVE HOVER TABLE -->
 <div class="content">
   <div class="row">
@@ -57,23 +62,26 @@
                               {{$data->jk === "L" ? "Laki - Laki" : "Perempuan"}}
                             </td>
                             <td>
-                              <div class="btn-group">
-                                <a class="dropdown-item"  href="{{route('anggota.show', $data->id)}}">
-                                  <button type="button" class="btn btn-info">Detail</button>
-                                </a>
-                                <a class="dropdown-item"  href="{{route('anggota.edit', $data->id)}}">
-                                  <button type="button" class="btn btn-success">Edit</button>
-                                </a>
-                                <a class="dropdown-item">
-                                  <form action="{{ route('anggota.destroy', $data->id) }}" class="pull-left"  method="post">
-                                    {{ csrf_field() }}
-                                    {{ method_field('delete') }}
-                                    <button type="button" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
-                                      Delete
-                                    </button>
-                                  </form>
-                                </a>
-                              </div>
+                              <form action="{{ route('anggota.destroy', $data->id) }}" class="pull-left"  method="post">
+                                <div class="btn-group">
+                                  <a class="dropdown-item"  href="{{route('anggota.show', $data->id)}}">
+                                    <button type="button" class="btn btn-info">Detail</button>
+                                  </a>
+                                  <a class="dropdown-item"  href="{{route('anggota.edit', $data->id)}}">
+                                    <button type="button" class="btn btn-success">Edit</button>
+                                  </a>
+                                  <a class="dropdown-item">
+                                    
+                                      {{-- {{ csrf_field() }}
+                                      {{ method_field('delete') }} --}}
+                                      @csrf
+                                      @method('DELETE')
+                                      <button type="submit" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
+                                        Delete
+                                      </button>
+                                  </a>
+                                </div>
+                              </form>
                             </td>
                           </tr>
               @endforeach

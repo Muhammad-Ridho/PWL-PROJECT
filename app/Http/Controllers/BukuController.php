@@ -111,7 +111,13 @@ class BukuController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(Auth::user()->level == 'user'){
+            Alert::info('Ooppss..', 'Anda dilarang masuk ke halaman ini!');
+            return redirect()->to('/');
+        }
+
+        $data = Buku::findOrFail($id);
+        return view('buku.edit', compact('data'));
     }
 
     /**
@@ -123,7 +129,31 @@ class BukuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->file('cover')){
+            $file = $request->file('cover');
+            $dt = Carbon::now();
+            $acak  = $file->getClientOriginalExtension();
+            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
+            $request->file('cover')->move("images/buku", $fileName);
+            $cover = $fileName;
+        }else{
+            $cover = NULL;
+        }
+
+        Buku::find($id)->update([
+            'judul' => $request->get('judul'),
+            'isbn' => $request->get('isbn'),
+            'pengarang' => $request->get('pengarang'),
+            'penerbit' => $request->get('penerbit'),
+            'tahun_terbit' => $request->get('tahun_terbit'),
+            'jumlah_buku' => $request->get('jumlah_buku'),
+            'deskripsi' => $request->get('deskripsi'),
+            'lokasi' => $request->get('lokasi'),
+            'cover' => $request->get('cover')
+        ]);
+
+        alert()->success('Berhasil.','Data telah diubah!');
+        return redirect()->route('buku.index');
     }
 
     /**

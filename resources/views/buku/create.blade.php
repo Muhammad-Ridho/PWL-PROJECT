@@ -7,6 +7,26 @@ $(document).ready(function() {
 });
 
 </script>
+
+<script type="text/javascript">
+        function readURL() {
+            var input = this;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(input).prev().attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(function () {
+            $(".uploads").change(readURL)
+            $("#f").submit(function(){
+                return false
+            })
+        })
+        </script>
 @stop
 
 @extends('layouts.app')
@@ -103,7 +123,7 @@ $(document).ready(function() {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                         </div>
-                                        <input id="tahun_terbit" name="tahun_terbit" value="{{ old('tahun_terbit') }}" type="text" class="form-control" data-mask placeholder="Masukkan Tahun Terbit">
+                                        <input id="tahun_terbit" name="tahun_terbit" value="{{ old('tahun_terbit') }}" type="number" class="form-control" data-mask placeholder="Masukkan Tahun Terbit">
                                         @if ($errors->has('tahun_terbit'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('tahun_terbit') }}</strong>
@@ -158,10 +178,10 @@ $(document).ready(function() {
                                 </div>
 
                                 <div class="form-group{{ $errors->has('cover') ? ' has-error' : '' }}">
-                                    <label>COVER :</label>
+                                    <label for="email">COVER :</label>
                                     <div>
                                         <img width="200" height="200" />
-                                        <input type="file" class="uploads form-control" name="cover">
+                                        <input type="file" class="uploads form-control" name="cover" style="margin-top: 20px;">
                                     </dvi>
                                 </div>
         

@@ -46,9 +46,9 @@ class BukuController extends Controller
         if(Auth::user()->level == 'user'){
             Alert::info('Oppss..', 'Anda dilarang masuk ke halaman ini.');
             return redirect()->to('/');
-
-            return view('buku.create');
         }
+
+        return view('buku.create');
     }
 
     /**
@@ -69,7 +69,7 @@ class BukuController extends Controller
             $dt = Carbon::now();
             $acak = $file->getClientOriginalExtension();
             $fileName = rand(11111, 99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak;
-            $request->file('cover')->move("image/buku", $fileName);
+            $request->file('cover')->move("images/buku", $fileName);
             $cover = $fileName;
         }else{
             $cover = NULL;

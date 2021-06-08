@@ -145,7 +145,8 @@ class AnggotaController extends Controller
     public function destroy($id)
     {
         ModelsAnggota::find($id)->delete();
-        alert()->success('Berhasil.','Data telah dihapus!');
-        return redirect()->route('anggota.index');
+        // alert()->success('Berhasil.','Data telah dihapus!');
+        return redirect()->route('anggota.index')
+            -> with('success', 'Data Anggota Berhasil Dihapus');
     }
 }

@@ -178,7 +178,7 @@ $(document).ready(function() {
                                 </div>
 
                                 <div class="form-group{{ $errors->has('cover') ? ' has-error' : '' }}">
-                                    <label for="email">COVER :</label>
+                                    <label>COVER :</label>
                                     <div>
                                         <img width="200" height="200" />
                                         <input type="file" class="uploads form-control" name="cover" style="margin-top: 20px;">

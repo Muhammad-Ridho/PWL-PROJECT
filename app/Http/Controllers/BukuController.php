@@ -100,7 +100,14 @@ class BukuController extends Controller
      */
     public function show($id)
     {
-        //
+        if(Auth::user()->level == 'user') {
+            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+            return redirect()->to('/');
+        }
+
+        $data = Buku::findOrFail($id);
+
+        return view('buku.show', compact('data'));
     }
 
     /**
@@ -149,7 +156,7 @@ class BukuController extends Controller
             'jumlah_buku' => $request->get('jumlah_buku'),
             'deskripsi' => $request->get('deskripsi'),
             'lokasi' => $request->get('lokasi'),
-            'cover' => $request->get('cover')
+            'cover' => $request->get('cover'),
         ]);
 
         alert()->success('Berhasil.','Data telah diubah!');

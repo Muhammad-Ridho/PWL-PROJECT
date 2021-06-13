@@ -171,6 +171,7 @@ class BukuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Buku::find($id)->delete();
+        return redirect()->route('buku.index')-> with('Success', 'Data Buku Berhasil Dihapus!');
     }
 }

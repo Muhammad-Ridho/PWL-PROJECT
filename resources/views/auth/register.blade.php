@@ -1,3 +1,25 @@
+@section('js')
+<script type="text/javascript">
+        function readURL() {
+            var input = this;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $(input).prev().attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(function () {
+            $(".uploads").change(readURL)
+            $("#f").submit(function(){
+                return false
+            })
+        })
+</script>
+@stop
+
 @extends('layouts.app')
 
 @section('content')
@@ -36,6 +58,29 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="level" class="col-md-4 col-form-label text-md-right">{{ __('level') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="level" class="form-control @error('level') is-invalid @enderror" required="">
+
+                                <option value="">Pilih Level</option>
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="gambar" class="col-md-4 col-form-label text-md-right">Foto</label>
+
+                            <div class="col-md-6">
+                                <img class="gambar" width="200" height="200"/>
+                                <input type="file" class="uploads form-control" style="margin-top: 20px" name="gambar">
                             </div>
                         </div>
 

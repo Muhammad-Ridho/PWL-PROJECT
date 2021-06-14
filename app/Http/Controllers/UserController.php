@@ -144,34 +144,24 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user_data = User::findOrFail($id);
-
-        if($request->file('gambar')) 
-        {
+        if($request->file('gambar')){
             $file = $request->file('gambar');
             $dt = Carbon::now();
-            $acak  = $file->getClientOriginalExtension();
-            $fileName = rand(11111,99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak; 
-            $request->file('gambar')->move("images/user", $fileName);
-            $user_data->gambar = $fileName;
+            $request->file('gambar')->move("images/user");
+        }else{
+            $cover = NULL;
         }
 
-        $user_data->name = $request->input('name');
-        $user_data->email = $request->input('email');
-        if($request->input('password')) {
-        $user_data->level = $request->input('level');
-        }
+        User::find($id)->update([
+            'name' => $request->get('name'),
+            'username' => $request->get('username'),
+            'email' => $request->get('email'),
+            'password' => bcrypt($request->get('penerbit')),
+            'cover' => $request->get('gambar'),
+            'level' => $request->get('level'),
+        ]);
 
-        if($request->input('password')) {
-            $user_data->password= bcrypt(($request->input('password')));
-        
-        }
-
-        $user_data->update();
-
-        echo "<script>";
-        echo "alert('Data berhasil diubah');";
-        echo "</script>";
+        alert()->success('Berhasil.','Data telah diubah!');
         return redirect()->to('user');
     }
 

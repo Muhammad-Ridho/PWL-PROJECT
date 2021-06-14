@@ -30,7 +30,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('user.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -40,6 +40,20 @@
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username">
+
+                                @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -62,18 +76,16 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="level" class="col-md-4 col-form-label text-md-right">{{ __('level') }}</label>
-
+                            <label for="level" class="col-md-4 col-form-label text-md-right">{{ __('Level') }}</label>
                             <div class="col-md-6">
-                                <select name="level" class="form-control @error('level') is-invalid @enderror" required="">
-
-                                <option value="">Pilih Level</option>
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
-
+                                <select class="form-control @error('level') is-invalid @enderror" name="level" required="">
+                                    <option value=""></option>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
                                 </select>
                             </div>
                         </div>
+
 
                         <div class="form-group row">
                             <label for="gambar" class="col-md-4 col-form-label text-md-right">Foto</label>

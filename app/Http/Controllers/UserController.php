@@ -25,9 +25,7 @@ class UserController extends Controller
     public function index()
     {
         if(Auth::user()->level == 'user') {
-            echo "<script>";
-            echo "alert('Maaf', 'Anda dilarang masuk ke area ini.');";
-            echo "</script>";
+            Alert::info('Maaf', 'Anda dilarang masuk halaman ini');
             return redirect()->to('/');
         }
 
@@ -43,9 +41,7 @@ class UserController extends Controller
     public function create()
     {
         if(Auth::user()->level == 'user') {
-            echo "<script>";
-            echo "alert('Maaf', 'Anda dilarang masuk ke area ini.');";
-            echo "</script>";
+            Alert::info('Maaf', 'Anda dilarang masuk halaman ini');
             return redirect()->to('/');
         }
         return view('auth.register');
@@ -62,9 +58,7 @@ class UserController extends Controller
         $count = User::where('username',$request->input('username'))->count();
 
         if($count>0){
-            echo "<script>";
-            echo "alert('Username sudah terpakai. Harap pilih Username yang lainnya.');";
-            echo "</script>";
+            alert()->info('Username sudah terpakai. Harap pilih Username yang lainnya.');
             return redirect()->to('user');
         }
 
@@ -72,7 +66,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6|confirmed'
         ]);
 
 
@@ -87,19 +81,21 @@ class UserController extends Controller
             $gambar = $fileName;
         }
 
+        
+
         User::create([
             'name' => $request->input('name'),
             'username' => $request->input('username'),
             'email' => $request->input('email'),
-            'level' => $request->input('level'),
             'password' => bcrypt(($request->input('password'))),
-            'gambar' => $gambar
+            'gambar' => $gambar,
+            'level' => $request->input('level')
+            
+            
         ]);
 
-        echo "<script>";
-        echo "alert('Data berhasil ditambahkan');";
-        echo "</script>";
-        return redirect()->route('user.index');
+        alert()->success('Berhasil.','Data telah ditambahkan!');
+        return redirect()->route('auth.user');
 
     }
 
@@ -112,9 +108,7 @@ class UserController extends Controller
     public function show($id)
     {
         if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
-                echo "<script>";
-                echo "alert('Maaf','Anda dilarang masuk ke area ini.');";
-                echo "</script>";
+                Alert::info('Maaf', 'Anda dilarang masuk halaman ini');
                 return redirect()->to('/');
         }
 
@@ -132,9 +126,7 @@ class UserController extends Controller
     public function edit($id)
     {   
         if((Auth::user()->level == 'user') && (Auth::user()->id != $id)) {
-                echo "<script>";
-                echo "alert('Maaf','Anda dilarang masuk ke area ini.');";
-                echo "</script>";
+                Alert::info('Maaf', 'Anda dilarang masuk halaman ini');
                 return redirect()->to('/');
         }
 

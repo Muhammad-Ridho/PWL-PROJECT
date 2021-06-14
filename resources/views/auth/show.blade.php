@@ -37,9 +37,6 @@
                             <li class="list-group-item">
                                 <b>email</b> <a class="float-right">{{$data->email}}</a>
                             </li>
-                            <li class="list-group-item">
-                                <b>Password</b> <a class="float-right">{{$data->password}}</a>
-                            </li>
                         </ul>
                     </div>
                     <div class="card-footer">

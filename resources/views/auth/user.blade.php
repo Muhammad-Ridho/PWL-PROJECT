@@ -59,6 +59,7 @@
                                 {{$data->level}}
                             </td>
                             <td>
+                            <form action="{{ route('user.destroy', $data->id) }}" class="pull-left"  method="post">
                               <div class="btn-group">
                                 <a class="dropdown-item"  href="{{route('user.show', $data->id)}}">
                                   <button type="button" class="btn btn-info">Detail</button>
@@ -67,15 +68,16 @@
                                   <button type="button" class="btn btn-success">Edit</button>
                                 </a>
                                 <a class="dropdown-item">
-                                  <form action="{{ route('user.destroy', $data->id) }}" class="pull-left"  method="post">
-                                    {{ csrf_field() }}
-                                    {{ method_field('delete') }}
+                                    {{-- {{ csrf_field() }}
+                                      {{ method_field('delete') }} --}}
+                                      @csrf
+                                      @method('DELETE')
                                     <button type="button" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
                                       Delete
                                     </button>
-                                  </form>
                                 </a>
                               </div>
+                            </form>
                             </td>
                           </tr>
               @endforeach

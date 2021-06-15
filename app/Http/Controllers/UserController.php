@@ -174,16 +174,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         if(Auth::user()->id != $id) {
-            $user_data = User::findOrFail($id);
-            $user_data->delete();
-            echo "<script>";
-            echo "alert('Data berhasil dihapus');";
-            echo "</script>";
+            $user_data = User::find($id)->delete();
+
+            alert()->success('Success', 'Data Anggota Berhasil Dihapus');
+
         } else {
-            echo "<script>";
-            echo "alert('Maaf anda tidak bisa menghapus akun anda sendiri');";
-            echo "</script>";
+
+            alert()->warning('Maaf', 'Anda tidak bisa menghapus akun anda sendiri');
+
         }
         return redirect()->to('user');
+
+
     }
 }

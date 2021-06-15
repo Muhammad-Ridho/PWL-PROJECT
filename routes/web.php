@@ -6,7 +6,6 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
-use App\Htpp\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +35,4 @@ Route::resource('transaksi', TransaksiController::class);
 
 Route::resource('user', UserController::class);
 
-Route::get('laporan/buku', 'LaporanController@buku');
+Route::get('laporan/buku', [App\Http\Controllers\LaporanController::class, 'buku']);

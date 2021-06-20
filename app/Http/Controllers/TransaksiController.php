@@ -164,6 +164,30 @@ class TransaksiController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatehilang(Request $request, $id)
+    {
+        $transaksi = Transaksi::find($id);
+
+        $transaksi->update([
+                'status' => 'hilang'
+                ]);
+
+        // $transaksi->buku->where('id', $transaksi->buku->id)
+        //                 ->update([
+        //                     'jumlah_buku' => ($transaksi->buku->jumlah_buku + 1),
+        //                     ]);
+
+        alert()->success('Berhasil.','Data telah diubah!');
+        return redirect()->route('transaksi.index');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

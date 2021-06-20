@@ -70,11 +70,18 @@
                                   <td>
                                     <div class="btn-group">
                                       @if($data->status == 'pinjam')
-                                        <form action="{{ route('transaksi.update', $data->id) }}" method="post" enctype="multipart/form-data">
-                                          {{ csrf_field() }}
-                                          {{ method_field('put') }}
-                                          <button class="btn btn-success btn-sm" onclick="return confirm('Anda yakin data ini sudah kembali?')"> Sudah Kembali</button>
-                                        </form>
+                                        <div class="btn-group-vertical">
+                                          <form action="{{ route('transaksi.update', $data->id) }}" method="post" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                            {{ method_field('put') }}
+                                            <button class="btn btn-success btn-sm" onclick="return confirm('Anda yakin data ini sudah kembali?')"> Sudah Kembali</button>
+                                          </form>
+                                          <form action="{{ route('transaksi.updatehilang', $data->id) }}" method="post" enctype="multipart/form-data">
+                                            {{ csrf_field() }}
+                                            {{ method_field('put') }}
+                                            <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah buku yang dipinjam hilang?')"> Buku Hilang</button>
+                                          </form>
+                                        </div>
                                       @endif
                                     </div>
                                   </td>

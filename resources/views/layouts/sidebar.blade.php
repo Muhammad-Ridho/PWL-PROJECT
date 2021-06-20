@@ -63,12 +63,27 @@
             </ul>
         </li>
         <li class="nav-item">
-          <a href="{{route('transaksi.index')}}" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
             <p>
               Transaksi
+              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('transaksi.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Transaksi Peminjaman</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Transaksi Keterlambatan</p>
+              </a>
+            </li>
+          </ul>
         </li>
         @if(Auth::user()->level == 'admin')
         <li class="nav-item">

@@ -11,7 +11,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>{{$transaksi->count()}}</h3>
 
                 <p>Transaksi</p>
               </div>
@@ -26,7 +26,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>{{$transaksi->where('status', 'pinjam')->count()}}</h3>
 
                 <p>Sedang Pinjam</p>
               </div>
@@ -41,7 +41,7 @@
             <!-- small box -->
             <div class="small-box bg-secondary">
               <div class="inner">
-                <h3>44</h3>
+                <h3>{{$buku->count()}}</h3>
 
                 <p>Buku</p>
               </div>
@@ -56,7 +56,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{$anggota->count()}}</h3>
 
                 <p>Anggota</p>
               </div>

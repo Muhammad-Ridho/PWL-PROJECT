@@ -36,14 +36,14 @@
                       <th>Tanggal Pinjam</th>
                       <th>Tanggal Kembali</th>
                       <th>Status</th>
-                      {{-- @if(Auth::user()->level == 'admin')
+                      @if(Auth::user()->level == 'admin')
                       <th>Action</th>
-                      @endif --}}
+                      @endif
                     </tr>
                   </thead>
                   <tbody>
                     @foreach($datas as $data)
-                                <tr>
+                              <tr>
                                   <td class="py-1">
                                     {{$data->kode_transaksi}}
                                   </td>
@@ -61,33 +61,25 @@
                                   </td>
                                   <td>
                                     @if($data->status == 'pinjam')
-                                        <label class="badge badge-warning">Pinjam</label>
+                                        <label class="btn btn-block btn-outline-warning btn-xs">Pinjam</label>
                                     @else
-                                        <label class="badge badge-success">Kembali</label>
+                                        <label class="btn btn-block btn-outline-success btn-xs">Kembali</label>
                                     @endif
                                   </td>
-                                  {{-- <td>
-                                    @if(Auth::user()->level == 'admin')
+                                  @if(Auth::user()->level == 'admin')
+                                  <td>
                                     <div class="btn-group">
-                                      <a class="dropdown-item"  href="{{route('transaksi.show', $data->id)}}">
-                                        <button type="button" class="btn btn-info">Detail</button>
-                                      </a>
-                                      <a class="dropdown-item"  href="{{route('transak.edit', $data->id)}}">
-                                        <button type="button" class="btn btn-success">Edit</button>
-                                      </a>
-                                      <a class="dropdown-item">
-                                        <form action="{{ route('anggota.destroy', $data->id) }}" class="pull-left"  method="post">
+                                      @if($data->status == 'pinjam')
+                                        <form action="{{ route('transaksi.update', $data->id) }}" method="post" enctype="multipart/form-data">
                                           {{ csrf_field() }}
-                                          {{ method_field('delete') }}
+                                          {{ method_field('put') }}
+                                          <button class="btn btn-success btn-sm" onclick="return confirm('Anda yakin data ini sudah kembali?')"> Sudah Kembali</button>
                                         </form>
-                                        <button type="button" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
-                                          Delete
-                                        </button>
-                                      </a>
+                                      @endif
                                     </div>
-                                    @endif
-                                  </td> --}}
-                                </tr>
+                                  </td>
+                                  @endif
+                              </tr>
                     @endforeach
                   </tbody>
                 </table>

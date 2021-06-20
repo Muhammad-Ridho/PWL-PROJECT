@@ -10,7 +10,11 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+        @if(Auth::user()->gambar == '')
+          <img class="img-xs rounded-circle"  src="{{asset('images/user/default.png')}}" alt="profile image">
+        @else
+          <img class="img-xs rounded-circle"  src="{{asset('images/user/'.Auth::user()->gambar)}}" alt="profile image">
+        @endif
       </div>
       <div class="info">
         <a href="#" class="d-block">{{Auth::user()->name}}</a>

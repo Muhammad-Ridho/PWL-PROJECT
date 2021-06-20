@@ -16,7 +16,7 @@
     <br>
     @if(Auth::user()->level == 'admin')
     <div class="col-lg-2">
-      <a href="{{ route('anggota.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Transaksi</a>
+      <a href="{{ route('transaksi.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Transaksi</a>
     </div>
     <br>
     @endif
@@ -36,9 +36,9 @@
                       <th>Tanggal Pinjam</th>
                       <th>Tanggal Kembali</th>
                       <th>Status</th>
-                      @if(Auth::user()->level == 'admin')
+                      {{-- @if(Auth::user()->level == 'admin')
                       <th>Action</th>
-                      @endif
+                      @endif --}}
                     </tr>
                   </thead>
                   <tbody>
@@ -66,13 +66,13 @@
                                         <label class="badge badge-success">Kembali</label>
                                     @endif
                                   </td>
-                                  <td>
+                                  {{-- <td>
                                     @if(Auth::user()->level == 'admin')
                                     <div class="btn-group">
-                                      <a class="dropdown-item"  href="{{route('anggota.show', $data->id)}}">
+                                      <a class="dropdown-item"  href="{{route('transaksi.show', $data->id)}}">
                                         <button type="button" class="btn btn-info">Detail</button>
                                       </a>
-                                      <a class="dropdown-item"  href="{{route('anggota.edit', $data->id)}}">
+                                      <a class="dropdown-item"  href="{{route('transak.edit', $data->id)}}">
                                         <button type="button" class="btn btn-success">Edit</button>
                                       </a>
                                       <a class="dropdown-item">
@@ -86,7 +86,7 @@
                                       </a>
                                     </div>
                                     @endif
-                                  </td>
+                                  </td> --}}
                                 </tr>
                     @endforeach
                   </tbody>

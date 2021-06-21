@@ -7,6 +7,7 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Htpp\Controllers\LaporanController;
+use App\Http\Controllers\LaporanController as ControllersLaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,5 @@ Route::resource('user', UserController::class);
 
 Route::get('laporan/buku', 'LaporanController@buku');
 
-Route::get('/laporan/trs', [LaporanController::class, 'transaksi']);
-Route::get('/laporan/trs/pdf', [LaporanController::class, 'transaksiPdf']);
+Route::get('/laporan/trs', [ControllersLaporanController::class, 'transaksi']);
+Route::get('/laporan/trs/pdf', [ControllersLaporanController::class, 'transaksiPdf']);

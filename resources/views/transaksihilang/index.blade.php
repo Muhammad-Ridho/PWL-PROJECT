@@ -7,20 +7,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Transaksi Pergantian Buku Hilang</h1>
+            <h1 class="m-0">Transaksi Buku Hilang</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
 
     <br>
-    @if(Auth::user()->level == 'admin')
-    <div class="col-lg-2">
-      <a href="{{ route('transaksi.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Buku Lama</a>
-      <a href="{{ route('transaksi.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Buku Baru</a>
-    </div>
-    <br>
-    @endif
 
     <div class="content">
         <div class="row">
@@ -61,8 +54,17 @@
                                     {{date('d/m/y', strtotime($data->tgl_kembali))}}
                                   </td>
                                   <td>
-                                    @if($data->status == 'pinjam')
-                                        <label class="btn btn-block btn-outline-warning btn-xs">Pinjam</label>
+                                    @php($date_facturation = \Carbon\Carbon::parse($data->tgl_kembali))
+                                    @if ($date_facturation->isPast())
+                                        <form action="{{ route('terlambat', [$data->id]) }}" method="post" enctype="multipart/form-data">
+                                          {{ csrf_field() }}
+                                          {{ method_field('put') }}
+                                        </form>
+                                        <label class="btn btn-block btn-outline-warning btn-xs">Terlambat</label>
+                                    @elseif($data->status == 'pinjam')
+                                        <label class="btn btn-block btn-outline-secondary btn-xs">Pinjam</label>
+                                    @elseif($data->status == 'hilang')
+                                        <label class="btn btn-block btn-outline-danger btn-xs">Hilang</label>
                                     @else
                                         <label class="btn btn-block btn-outline-success btn-xs">Kembali</label>
                                     @endif
@@ -70,20 +72,16 @@
                                   @if(Auth::user()->level == 'admin')
                                   <td>
                                     <div class="btn-group">
-                                      @if($data->status == 'pinjam')
                                         <div class="btn-group-vertical">
-                                          <form action="{{ route('transaksi.update', $data->id) }}" method="post" enctype="multipart/form-data">
+                                            <a href="{{ route('buku.create') }}">
+                                                <button class="btn btn-info btn-sm"> Ganti Buku Baru</button>
+                                            </a>
+                                          <form action="{{ route('bukuhilang', [$data->id]) }}" method="post" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             {{ method_field('put') }}
-                                            <button class="btn btn-success btn-sm" onclick="return confirm('Anda yakin data ini sudah kembali?')"> Sudah Kembali</button>
-                                          </form>
-                                          <form action="#" method="post" enctype="multipart/form-data">
-                                            {{ csrf_field() }}
-                                            {{ method_field('put') }}
-                                            <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah buku yang dipinjam hilang?')"> Buku Hilang</button>
+                                            <button class="btn btn-secondary btn-sm" > Ganti Buku Lama</button>
                                           </form>
                                         </div>
-                                      @endif
                                     </div>
                                   </td>
                                   @endif

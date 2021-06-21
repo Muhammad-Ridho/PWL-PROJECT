@@ -31,7 +31,7 @@
                 @if(Auth::user()->level == 'admin')
                     <div class="card-body row">
                         <div class="col-md-2">
-                            <a href="{{url('#')}}">
+                            <a href="{{url('laporan/buku/pdf')}}">
                                 <button type="button" class="btn btn-primary btn-block">Cetak Pdf </button>
                             </a>
                         </div>

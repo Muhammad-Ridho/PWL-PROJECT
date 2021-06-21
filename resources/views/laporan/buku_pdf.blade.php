@@ -35,8 +35,8 @@
           <td>{{$data->isbn}}</td>
           <td>{{$data->pengarang}}</td>
           <td>{{$data->penerbit}}</td>
-          <td>{{$data->tahun}}</td>
-          <td>{{$data->stok}}</td>
+          <td>{{$data->tahun_terbit}}</td>
+          <td>{{$data->jumlah_buku}}</td>
           <td>{{$data->lokasi}}</td>
         </tr>
 			@endforeach

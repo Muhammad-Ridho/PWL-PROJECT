@@ -52,13 +52,14 @@
             </div>
           </div>
           <!-- ./col -->
+          @if(Auth::user()->level == 'admin')  
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3>{{$anggota->count()}}</h3>
 
-                <p>Anggota</p>
+              <p>Anggota</p>
               </div>
               <div class="icon">
                 <i class="fas fa-users"></i>
@@ -66,6 +67,7 @@
               <a href="{{ route('anggota.index') }}" class="small-box-footer">Cek Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          @endif
           <!-- ./col -->
         </div>
     </div>

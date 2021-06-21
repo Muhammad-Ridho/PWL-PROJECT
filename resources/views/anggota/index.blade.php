@@ -9,6 +9,19 @@
       <div class="col-sm-6">
         <h1 class="m-0">Data Master Anggota</h1>
       </div><!-- /.col -->
+      <div class="col-sm-3"></div>
+      <div>
+        <form class="form-inline">
+          <div class="input-group input-group-sm">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <div class="input-group-append">
+              <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>

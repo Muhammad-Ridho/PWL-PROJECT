@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Transaksi</h1>
+            <h1 class="m-0">Transaksi Pergantian Buku Hilang</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -16,7 +16,8 @@
     <br>
     @if(Auth::user()->level == 'admin')
     <div class="col-lg-2">
-      <a href="{{ route('transaksi.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Transaksi</a>
+      <a href="{{ route('transaksi.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Buku Lama</a>
+      <a href="{{ route('transaksi.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah Buku Baru</a>
     </div>
     <br>
     @endif
@@ -76,11 +77,11 @@
                                             {{ method_field('put') }}
                                             <button class="btn btn-success btn-sm" onclick="return confirm('Anda yakin data ini sudah kembali?')"> Sudah Kembali</button>
                                           </form>
-                                          {{-- <form action="{{ route('bukuhilang', [$data->id]) }}" method="post" enctype="multipart/form-data">
+                                          <form action="#" method="post" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             {{ method_field('put') }}
                                             <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah buku yang dipinjam hilang?')"> Buku Hilang</button>
-                                          </form> --}}
+                                          </form>
                                         </div>
                                       @endif
                                     </div>

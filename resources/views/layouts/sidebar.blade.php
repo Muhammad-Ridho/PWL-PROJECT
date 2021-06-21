@@ -10,7 +10,11 @@
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+        @if(Auth::user()->gambar == '')
+          <img class="img-xs rounded-circle"  src="{{asset('images/user/default.png')}}" alt="profile image">
+        @else
+          <img class="img-xs rounded-circle"  src="{{asset('images/user/'.Auth::user()->gambar)}}" alt="profile image">
+        @endif
       </div>
       <div class="info">
         <a href="#" class="d-block">{{Auth::user()->name}}</a>
@@ -63,12 +67,27 @@
             </ul>
         </li>
         <li class="nav-item">
-          <a href="{{route('transaksi.index')}}" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-table"></i>
             <p>
               Transaksi
+              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('transaksi.index')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Transaksi Peminjaman</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Transaksi Keterlambatan</p>
+              </a>
+            </li>
+          </ul>
         </li>
         @if(Auth::user()->level == 'admin')
         <li class="nav-item">
@@ -81,7 +100,7 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="{{url('laporan/trs')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Laporan Transaksi</p>
               </a>

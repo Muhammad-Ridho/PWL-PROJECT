@@ -25,10 +25,6 @@
   <div class="col-md-2 pull-left">
     <a href="{{ url('#') }}" class="btn btn-primary btn-rounded btn-fw"><b><i class="fa fa-download"></i> Export PDF</a></b>
   </div>
-  <div class="col-md-2 pull-left">
-     <a href="{{ url('#') }}" class="btn btn-success btn-rounded btn-fw">
-     <b><i class="fa fa-download"></i> Export EXCEL</a></b>
-  </div>
                 </div>
               </div>
             </div>

@@ -9,17 +9,16 @@
       <div class="col-sm-6">
         <h1 class="m-0">Data Master Anggota</h1>
       </div><!-- /.col -->
-      <div class="col-sm-3"></div>
+      <div class="col-sm-2"></div>
       <div>
-        <form class="form-inline">
-          <div class="input-group input-group-sm">
-            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-            </div>
+        <form class="float-right form-inline" id="searchForm" method="get" action="{{ route('anggota.index') }}" role="search">
+          <div class="form-group">
+              <input type="text" name="keyword" class="form-control" id="Keyword" aria-describedby="Keyword" placeholder="Cari Anggota.." value="{{request()->query('keyword')}}">
           </div>
+          <button type="submit" class="btn btn-primary mx-2">Cari</button>
+          <a href="{{ route('anggota.index') }}">
+              <button type="button" class="btn btn-danger">Reset</button>
+          </a>
         </form>
       </div>
     </div><!-- /.row -->
@@ -51,6 +50,7 @@
                 <th>NIM</th>
                 <th>Prodi</th>
                 <th>Jenis Kelamin</th>
+                <th>Username</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -73,6 +73,9 @@
                             </td>
                             <td>
                               {{$data->jk === "L" ? "Laki - Laki" : "Perempuan"}}
+                            </td>
+                            <td>
+                              {{$data->user->username}}
                             </td>
                             <td>
                               <form action="{{ route('anggota.destroy', $data->id) }}" class="pull-left"  method="post">

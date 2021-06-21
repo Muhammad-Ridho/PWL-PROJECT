@@ -27,15 +27,22 @@ class AnggotaController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        if(Auth::user()->level == 'user') {
-            Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
-            return redirect()->to('/');
-        }
-
-        $datas = ModelsAnggota::get();
-        return view('anggota.index', compact('datas'));
+        $datas = ModelsAnggota::where([
+            ['nama', '!=', Null],
+            [function ($query) use ($request) {
+                if (($keyword = $request->keyword)) {
+                    $query->orWhere('nama','LIKE','%'.$keyword.'%')
+                    ->orWhere('nim','LIKE','%'.$keyword.'%')
+                    ->orWhere('user_id','LIKE','%'.$keyword.'%')->get();
+                }
+            }]
+        ])
+            ->orderBy("user_id", "desc")
+            ->paginate(10);
+        return view('anggota.index', compact('datas'))
+            ->with('i', (request()->input('page', 1)-1)*5);
     }
 
     /**

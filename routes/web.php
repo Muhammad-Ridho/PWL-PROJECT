@@ -32,7 +32,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::resource('anggota', AnggotaController::class);
-Route::get('/anggota/cari', [AnggotaController::class, 'cari'])->name('carianggota');
 
 Route::resource('buku', BukuController::class);
 

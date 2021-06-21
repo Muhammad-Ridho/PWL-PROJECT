@@ -22,15 +22,28 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         if(Auth::user()->level == 'user') {
             Alert::info('Maaf', 'Anda dilarang masuk halaman ini');
             return redirect()->to('/');
         }
 
-        $datas = User::get();
-        return view('auth.user', compact('datas'));
+        $datas = User::where([
+            ['name', '!=', Null],
+            [function ($query) use ($request) {
+                if (($keyword = $request->keyword)) {
+                    $query->orWhere('name','LIKE','%'.$keyword.'%')
+                    ->orWhere('username','LIKE','%'.$keyword.'%')
+                    ->orWhere('email','LIKE','%'.$keyword.'%')
+                    ->orWhere('level','LIKE','%'.$keyword.'%')->get();
+                }
+            }]
+        ])
+            ->orderBy("name", "desc")
+            ->paginate(10);
+        return view('auth.user', compact('datas'))
+            ->with('i', (request()->input('page', 1)-1)*5); 
     }
 
     /**

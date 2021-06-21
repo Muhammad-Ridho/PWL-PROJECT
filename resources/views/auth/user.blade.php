@@ -1,3 +1,13 @@
+@section('js')
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#table').DataTable({
+      "iDisplayLength": 50
+    });
+
+} );
+</script>
+@stop
 @extends('layouts.app')
 
 @section('content')
@@ -60,24 +70,25 @@
                             </td>
                             <td>
                             <form action="{{ route('user.destroy', $data->id) }}" class="pull-left"  method="post">
-                              <div class="btn-group">
-                                <a class="dropdown-item"  href="{{route('user.show', $data->id)}}">
-                                  <button type="button" class="btn btn-info">Detail</button>
-                                </a>
-                                <a class="dropdown-item"  href="{{route('user.edit', $data->id)}}">
-                                  <button type="button" class="btn btn-success">Edit</button>
-                                </a>
-                                <a class="dropdown-item">
-                                    {{-- {{ csrf_field() }}
+                                <div class="btn-group">
+                                  <a class="dropdown-item"  href="{{route('user.show', $data->id)}}">
+                                    <button type="button" class="btn btn-info">Detail</button>
+                                  </a>
+                                  <a class="dropdown-item"  href="{{route('user.edit', $data->id)}}">
+                                    <button type="button" class="btn btn-success">Edit</button>
+                                  </a>
+                                  <a class="dropdown-item">
+                                    
+                                      {{-- {{ csrf_field() }}
                                       {{ method_field('delete') }} --}}
                                       @csrf
                                       @method('DELETE')
-                                    <button type="button" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
-                                      Delete
-                                    </button>
-                                </a>
-                              </div>
-                            </form>
+                                      <button type="submit" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
+                                        Delete
+                                      </button>
+                                  </a>
+                                </div>
+                              </form>
                             </td>
                           </tr>
               @endforeach

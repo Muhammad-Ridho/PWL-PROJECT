@@ -66,4 +66,11 @@ class LaporanController extends Controller
        return $pdf->download('laporan_transaksi_'.date('Y-m-d_H-i-s').'.pdf');
     }
 
+    public function bukuPdf()
+    {
+        $datas = Buuku::all();
+        $pdf = PDF::loadview('laporan.buku_pdf', compact('datas'));
+        return $pdf->download('laporan_data_buku_'.date('Y-m-d_H-i-s').'pdf');
+    }
+
 }

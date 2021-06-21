@@ -178,10 +178,10 @@ class TransaksiController extends Controller
                 'status' => 'hilang'
                 ]);
 
-        // $transaksi->buku->where('id', $transaksi->buku->id)
-        //                 ->update([
-        //                     'jumlah_buku' => ($transaksi->buku->jumlah_buku + 1),
-        //                     ]);
+        $transaksi->buku->where('id', $transaksi->buku->id)
+                        ->update([
+                            'jumlah_buku' => ($transaksi->buku->jumlah_buku),
+                            ]);
 
         alert()->success('Berhasil.','Data telah diubah!');
         return redirect()->route('transaksi.index');

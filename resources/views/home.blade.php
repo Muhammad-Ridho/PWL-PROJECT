@@ -18,7 +18,7 @@
               <div class="icon">
                 <i class="fas fa-inbox"></i>
               </div>
-              <a href="#" class="small-box-footer">Cek Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('transaksi.index') }}" class="small-box-footer">Cek Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -48,7 +48,7 @@
               <div class="icon">
                 <i class="fas fa-book"></i>
               </div>
-              <a href="#" class="small-box-footer">Cek Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('buku.index') }}" class="small-box-footer">Cek Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -63,7 +63,7 @@
               <div class="icon">
                 <i class="fas fa-users"></i>
               </div>
-              <a href="#" class="small-box-footer">Cek Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('anggota.index') }}" class="small-box-footer">Cek Selengkapnya <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

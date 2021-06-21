@@ -81,7 +81,7 @@
                                 <select class="form-control @error('level') is-invalid @enderror" name="level" required="">
                                     <option value=""></option>
                                     <option value="admin">Admin</option>
-                                    <option value="user">User</option>
+                                    <option value="anggota">Anggota</option>
                                 </select>
                             </div>
                         </div>

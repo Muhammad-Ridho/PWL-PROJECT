@@ -95,7 +95,7 @@ class UserController extends Controller
         ]);
 
         alert()->success('Berhasil.','Data telah ditambahkan!');
-        return redirect()->route('auth.user');
+        return redirect()->route('user');
 
     }
 

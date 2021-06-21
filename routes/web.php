@@ -43,6 +43,7 @@ Route::resource('user', UserController::class);
 Route::get('laporan/buku', [App\Http\Controllers\LaporanController::class, 'buku']);
 
 Route::get('/laporan/buku', [ControllersLaporanController::Class, 'buku']);
+Route::get('/laporan/buku/pdf', [ControllersLaporanController::Class, 'bukuPdf']);
 
 Route::get('/laporan/trs', [ControllersLaporanController::class, 'transaksi']);
 Route::get('/laporan/trs/pdf', [ControllersLaporanController::class, 'transaksiPdf']);

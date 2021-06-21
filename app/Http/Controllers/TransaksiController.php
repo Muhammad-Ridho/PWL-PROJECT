@@ -34,6 +34,18 @@ class TransaksiController extends Controller
         return view('transaksi.index', compact('datas'));
     }
 
+    public function indexhilang()
+    {
+        if(Auth::user()->level == 'user')
+        {
+            $datas = Transaksi::where('anggota_id', Auth::user()->anggota->id)
+                                ->get();
+        } else {
+            $datas = Transaksi::where('status','hilang')->get();
+        }
+        return view('transaksi.index', compact('datas'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

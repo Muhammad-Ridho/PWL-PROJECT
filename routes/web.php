@@ -36,6 +36,7 @@ Route::resource('anggota', AnggotaController::class);
 Route::resource('buku', BukuController::class);
 
 Route::resource('transaksi', TransaksiController::class);
+Route::get('/transaksihilang', [TransaksiController::class, 'indexhilang'])->name('transaksihilang');
 Route::put('/transaksi/bukuhilang/{id}', [TransaksiController::class, 'updatehilang'])->name('bukuhilang');
 Route::put('/transaksi/terlambat/{id}', [TransaksiController::class, 'updateterlambat'])->name('terlambat');
 

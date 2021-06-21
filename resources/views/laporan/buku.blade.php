@@ -22,20 +22,24 @@
     </div><!-- /.container-fluid -->
   </div>
 
-
-<div class="row">
-
-</div>
-<div class="row" style="margin-top: 20px;">
-  <div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <div class="col-md-2 pull-left">
-          <a href="{{ url(#) }}" class="btn btn-primary btn-rounded btn-fw"><b><i class="fa fa-download"></i> Export PDF</a></b>
+  <div class="content">
+    <div class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+                <br>
+                @if(Auth::user()->level == 'admin')
+                    <div class="card-body row">
+                        <div class="col-md-2">
+                            <a href="{{url('#')}}">
+                                <button type="button" class="btn btn-primary btn-block">Cetak Pdf </button>
+                            </a>
+                        </div>
+                    </div>
+                @endif
+            </div>
+          </div>
         </div>
-      </div>
     </div>
   </div>
-</div>
-
 @endsection

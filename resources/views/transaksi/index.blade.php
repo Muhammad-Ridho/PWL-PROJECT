@@ -76,11 +76,11 @@
                                             {{ method_field('put') }}
                                             <button class="btn btn-success btn-sm" onclick="return confirm('Anda yakin data ini sudah kembali?')"> Sudah Kembali</button>
                                           </form>
-                                          <form action="#" method="post" enctype="multipart/form-data">
+                                          {{-- <form action="{{ route('bukuhilang', [$data->id]) }}" method="post" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             {{ method_field('put') }}
                                             <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah buku yang dipinjam hilang?')"> Buku Hilang</button>
-                                          </form>
+                                          </form> --}}
                                         </div>
                                       @endif
                                     </div>

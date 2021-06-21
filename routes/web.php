@@ -33,6 +33,7 @@ Route::resource('anggota', AnggotaController::class);
 Route::resource('buku', BukuController::class);
 
 Route::resource('transaksi', TransaksiController::class);
+// Route::post('/transaksi/bukuhilang/{id}', TransaksiController::class, 'updatehilang')->name('bukuhilang');
 
 Route::resource('user', UserController::class);
 

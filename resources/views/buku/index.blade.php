@@ -102,23 +102,26 @@
                         </td>
                         <td>
                           @if(Auth::user()->level == 'admin')
-                          <div class="btn-group">
-                            <a class="dropdown-item"  href="{{route('buku.show', $data->id)}}">
-                              <button type="button" class="btn btn-info">Detail</button>
-                            </a>
-                            <a class="dropdown-item"  href="{{route('buku.edit', $data->id)}}">
-                              <button type="button" class="btn btn-success">Edit</button>
-                            </a>
-                            <a class="dropdown-item">
-                              <form action="{{ route('buku.destroy', $data->id) }}" class="pull-left"  method="post">
-                                {{ csrf_field() }}
-                                {{ method_field('delete') }}
-                                <button type="button" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus data ini?')"> 
-                                  Delete 
-                                </button>
+                          <form action="{{ route('buku.destroy', $data->id) }}" class="pull-left"  method="post">
+                                <div class="btn-group">
+                                  <a class="dropdown-item"  href="{{route('buku.show', $data->id)}}">
+                                    <button type="button" class="btn btn-info">Detail</button>
+                                  </a>
+                                  <a class="dropdown-item"  href="{{route('buku.edit', $data->id)}}">
+                                    <button type="button" class="btn btn-success">Edit</button>
+                                  </a>
+                                  <a class="dropdown-item">
+                                    
+                                      {{-- {{ csrf_field() }}
+                                      {{ method_field('delete') }} --}}
+                                      @csrf
+                                      @method('DELETE')
+                                      <button type="submit" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus data ini?')">
+                                        Delete
+                                      </button>
+                                  </a>
+                                </div>
                               </form>
-                            </a>
-                          </div>
                           @endif
                         </td>
                       </tr>

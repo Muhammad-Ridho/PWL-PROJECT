@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 use App\Models\Buku;
+use App\Models\Transaksi;
 use DB;
+use PDF;
 use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -32,59 +34,36 @@ class LaporanController extends Controller
         return view('laporan.buku');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function transaksi()
     {
-        //
+
+        return view('laporan.transaksi');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function transaksiPdf(Request $request)
     {
-        //
+        $q = Transaksi::query();
+
+        if($request->get('status')) 
+        {
+             if($request->get('status') == 'pinjam') {
+                $q->where('status', 'pinjam');
+            } else {
+                $q->where('status', 'kembali');
+            }
+        }
+
+        if(Auth::user()->level == 'user')
+        {
+            $q->where('anggota_id', Auth::user()->anggota->id);
+        }
+
+        $datas = $q->get();
+
+       // return view('laporan.transaksi_pdf', compact('datas'));
+       $pdf = PDF::loadView('laporan.transaksi_pdf', compact('datas'));
+       return $pdf->download('laporan_transaksi_'.date('Y-m-d_H-i-s').'.pdf');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

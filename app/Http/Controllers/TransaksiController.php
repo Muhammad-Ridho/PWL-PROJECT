@@ -188,6 +188,31 @@ class TransaksiController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateterlambat(Request $request, $id)
+    {
+        $transaksi = Transaksi::find($id);
+
+        $transaksi->update([
+                'status' => 'terlambat'
+                ]);
+
+        $transaksi->buku->where('id', $transaksi->buku->id)
+                        ->update([
+                            'jumlah_buku' => ($transaksi->buku->jumlah_buku),
+                            ]);
+
+        alert()->success('Berhasil.','Data telah diubah!');
+        return redirect()->route('transaksi.index');
+    }
+
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

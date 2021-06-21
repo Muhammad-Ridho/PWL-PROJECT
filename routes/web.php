@@ -36,14 +36,15 @@ Route::resource('anggota', AnggotaController::class);
 Route::resource('buku', BukuController::class);
 
 Route::resource('transaksi', TransaksiController::class);
-// Route::post('/transaksi/bukuhilang/{id}', TransaksiController::class, 'updatehilang')->name('bukuhilang');
+Route::put('/transaksi/bukuhilang/{id}', [TransaksiController::class, 'updatehilang'])->name('bukuhilang');
+Route::put('/transaksi/terlambat/{id}', [TransaksiController::class, 'updateterlambat'])->name('terlambat');
 
 Route::resource('user', UserController::class);
 
 Route::get('laporan/buku', [App\Http\Controllers\LaporanController::class, 'buku']);
 
-Route::get('/laporan/buku', [ControllersLaporanController::Class, 'buku']);
-Route::get('/laporan/buku/pdf', [ControllersLaporanController::Class, 'bukuPdf']);
+Route::get('/laporan/buku', [ControllersLaporanController::class, 'buku']);
+Route::get('/laporan/buku/pdf', [ControllersLaporanController::class, 'bukuPdf']);
 
 Route::get('/laporan/trs', [ControllersLaporanController::class, 'transaksi']);
 Route::get('/laporan/trs/pdf', [ControllersLaporanController::class, 'transaksiPdf']);

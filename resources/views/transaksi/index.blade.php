@@ -60,8 +60,17 @@
                                     {{date('d/m/y', strtotime($data->tgl_kembali))}}
                                   </td>
                                   <td>
-                                    @if($data->status == 'pinjam')
-                                        <label class="btn btn-block btn-outline-warning btn-xs">Pinjam</label>
+                                    @php($date_facturation = \Carbon\Carbon::parse($data->tgl_kembali))
+                                    @if ($date_facturation->isPast())
+                                        <form action="{{ route('terlambat', [$data->id]) }}" method="post" enctype="multipart/form-data">
+                                          {{ csrf_field() }}
+                                          {{ method_field('put') }}
+                                        </form>
+                                        <label class="btn btn-block btn-outline-warning btn-xs">Terlambat</label>
+                                    @elseif($data->status == 'pinjam')
+                                        <label class="btn btn-block btn-outline-secondary btn-xs">Pinjam</label>
+                                    @elseif($data->status == 'hilang')
+                                        <label class="btn btn-block btn-outline-danger btn-xs">Hilang</label>
                                     @else
                                         <label class="btn btn-block btn-outline-success btn-xs">Kembali</label>
                                     @endif
@@ -76,11 +85,11 @@
                                             {{ method_field('put') }}
                                             <button class="btn btn-success btn-sm" onclick="return confirm('Anda yakin data ini sudah kembali?')"> Sudah Kembali</button>
                                           </form>
-                                          {{-- <form action="{{ route('bukuhilang', [$data->id]) }}" method="post" enctype="multipart/form-data">
+                                          <form action="{{ route('bukuhilang', [$data->id]) }}" method="post" enctype="multipart/form-data">
                                             {{ csrf_field() }}
                                             {{ method_field('put') }}
                                             <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah buku yang dipinjam hilang?')"> Buku Hilang</button>
-                                          </form> --}}
+                                          </form>
                                         </div>
                                       @endif
                                     </div>

@@ -55,7 +55,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-at"></i></span>
                                     </div>
-                                    <input id="kode_transaksi" name="kode_transaksi" value="{{ $kode }}" type="text" class="form-control" data-mask placeholder="Masukkan Kode Transaksi">
+                                    <input id="kode_transaksi" name="kode_transaksi" readonly value="{{ $kode }}" type="text" class="form-control" data-mask placeholder="Masukkan Kode Transaksi">
                                     @if ($errors->has('kode_transaksi'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('kode_transaksi') }}</strong>

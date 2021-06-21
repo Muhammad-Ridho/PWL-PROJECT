@@ -29,6 +29,11 @@ class AnggotaController extends Controller
 
     public function index(Request $request)
     {
+        if(Auth::user()->level == 'user') {
+                Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
+                return redirect()->to('/');
+        }
+
         $datas = ModelsAnggota::where([
             ['nama', '!=', Null],
             [function ($query) use ($request) {

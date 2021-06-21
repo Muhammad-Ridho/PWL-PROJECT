@@ -19,6 +19,18 @@
       <div class="col-sm-6">
         <h1 class="m-0">Data Master Buku</h1>
       </div><!-- /.col -->
+      <div class="col-sm-2"></div>
+      <div>
+        <form class="float-right form-inline" id="searchForm" method="get" action="{{ route('buku.index') }}" role="search">
+          <div class="form-group">
+              <input type="text" name="keyword" class="form-control" id="Keyword" aria-describedby="Keyword" placeholder="Cari Buku.." value="{{request()->query('keyword')}}">
+          </div>
+          <button type="submit" class="btn btn-primary mx-2">Cari</button>
+          <a href="{{ route('buku.index') }}">
+              <button type="button" class="btn btn-danger">Reset</button>
+          </a>
+        </form>
+      </div>
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
 </div>

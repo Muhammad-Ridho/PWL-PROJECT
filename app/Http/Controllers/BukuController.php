@@ -24,16 +24,30 @@ class BukuController extends Controller
         $this->middleware('auth');
     }
     
-    public function index()
+    public function index(Request $request)
     {
         if(Auth::user()->level == 'user') {
             Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
             return redirect()->to('/');
-        }
+        } 
 
-        $datas = Buku::get();
-        return view('buku.index', compact('datas'));
-    
+        $datas = Buku::where([
+            ['judul', '!=', Null],
+            [function ($query) use ($request) {
+                if (($keyword = $request->keyword)) {
+                    $query->orWhere('judul','LIKE','%'.$keyword.'%')
+                    ->orWhere('isbn','LIKE','%'.$keyword.'%')
+                    ->orWhere('penerbit','LIKE','%'.$keyword.'%')
+                    ->orWhere('pengarang','LIKE','%'.$keyword.'%')
+                    ->orWhere('tahun_terbit','LIKE','%'.$keyword.'%')
+                    ->orWhere('lokasi','LIKE','%'.$keyword.'%')->get();
+                }
+            }]
+        ])
+            ->orderBy("judul", "desc")
+            ->paginate(10);
+        return view('buku.index', compact('datas'))
+            ->with('i', (request()->input('page', 1)-1)*5);   
     }
 
     /**

@@ -38,3 +38,6 @@ Route::resource('transaksi', TransaksiController::class);
 Route::resource('user', UserController::class);
 
 Route::get('laporan/buku', 'LaporanController@buku');
+
+Route::get('/laporan/trs', [LaporanController::class, 'transaksi']);
+Route::get('/laporan/trs/pdf', [LaporanController::class, 'transaksiPdf']);

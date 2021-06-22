@@ -71,7 +71,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                     </div>
-                                    <input id="tgl_pinjam" name="tgl_pinjam" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}" type="text" class="form-control" data-mask placeholder="Masukkan Tanggal Transaksi">
+                                    <input id="tgl_pinjam" name="tgl_pinjam" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->toDateString())) }}" type="date" class="form-control" data-mask placeholder="Masukkan Tanggal Transaksi">
                                     @if ($errors->has('tgl_pinjam'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('tgl_pinjam') }}</strong>
@@ -87,7 +87,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                         </div>
-                                        <input id="tgl_kembali" name="tgl_kembali" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->addDays(5)->toDateString()))}}" type="text" class="form-control" data-mask placeholder="Masukkan Tanggal Kembali">
+                                        <input id="tgl_kembali" name="tgl_kembali" value="{{ date('Y-m-d', strtotime(Carbon\Carbon::today()->addDays(5)->toDateString()))}}" type="date" class="form-control" data-mask placeholder="Masukkan Tanggal Kembali">
                                         @if ($errors->has('tgl_kembali'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('tgl_kembali') }}</strong>

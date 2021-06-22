@@ -36,10 +36,15 @@
           <td>{{date('d/m/y', strtotime($data->tgl_pinjam))}}</td>
           <td>{{date('d/m/y', strtotime($data->tgl_kembali))}}</td>
           <td>
-            @if($data->status == 'pinjam')
-              Pinjam
+			@php($date_facturation = \Carbon\Carbon::parse($data->tgl_kembali))
+			@if ($date_facturation->isPast())
+				Terlambat
+            @elseif($data->status == 'pinjam')
+                Pinjam
+            @elseif($data->status == 'hilang')
+                Hilang
             @else
-              Kembali
+                Kembali
             @endif
           </td>
         </tr>

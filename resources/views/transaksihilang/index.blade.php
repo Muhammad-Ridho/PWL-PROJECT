@@ -56,7 +56,7 @@
                                   <td>
                                     @php($date_facturation = \Carbon\Carbon::parse($data->tgl_kembali))
                                     @if ($date_facturation->isPast())
-                                        <form action="{{ route('terlambat', [$data->id]) }}" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('terlambat', [$data->id]) }}" method="POST" enctype="multipart/form-data">
                                           {{ csrf_field() }}
                                           {{ method_field('put') }}
                                         </form>
@@ -73,13 +73,14 @@
                                   <td>
                                     <div class="btn-group">
                                         <div class="btn-group-vertical">
-                                            <a href="{{ route('buku.create') }}">
+                                            <a href="{{ route('createnewbook', $data->id) }}">
                                                 <button class="btn btn-info btn-sm"> Ganti Buku Baru</button>
                                             </a>
-                                          <form action="{{ route('bukuhilang', [$data->id]) }}" method="post" enctype="multipart/form-data">
-                                            {{ csrf_field() }}
-                                            {{ method_field('put') }}
-                                            <button class="btn btn-secondary btn-sm" > Ganti Buku Lama</button>
+                                            <form action="{{ route('updategantibuku', $data->id) }}" method="post" enctype="multipart/form-data">
+                                              {{ csrf_field() }}
+                                              {{ method_field('put') }}
+                                                <button class="btn btn-secondary btn-sm" > Ganti Status Kembali</button>
+                                            </form>
                                           </form>
                                         </div>
                                     </div>

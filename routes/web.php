@@ -36,9 +36,13 @@ Route::resource('anggota', AnggotaController::class);
 Route::resource('buku', BukuController::class);
 
 Route::resource('transaksi', TransaksiController::class);
-Route::get('/transaksihilang', [TransaksiController::class, 'indexhilang'])->name('transaksihilang');
 Route::put('/transaksi/bukuhilang/{id}', [TransaksiController::class, 'updatehilang'])->name('bukuhilang');
 Route::put('/transaksi/terlambat/{id}', [TransaksiController::class, 'updateterlambat'])->name('terlambat');
+
+Route::get('/transaksihilang', [TransaksiController::class, 'indexhilang'])->name('transaksihilang');
+Route::get('/transaksihilang/createnewbook/{id}', [TransaksiController::class, 'createNewBook'])->name('createnewbook');
+Route::put('/transaksihilang/storenewbook', [TransaksiController::class, 'storeNewBook'])->name('storenewbook');
+Route::put('/transaksihilang/updategantibuku/{id}', [TransaksiController::class, 'updategantibuku'])->name('updategantibuku');
 
 Route::resource('user', UserController::class);
 

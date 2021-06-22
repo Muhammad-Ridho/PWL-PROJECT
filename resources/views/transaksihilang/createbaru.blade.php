@@ -32,14 +32,15 @@ $(document).ready(function() {
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="{{ route('buku.store') }}" enctype="multipart/form-data">
-{{ csrf_field() }}
+<form method="POST" action="{{ route('storenewbook') }}" enctype="multipart/form-data">
+    {{ csrf_field() }}
+    {{ method_field('put') }}
 
     <div class="content">
         <div class="row justify-content-center">
             <section class="content">
                 <div class="container-fluid">
-                        <h2>Tambah Buku</h2>
+                        <h2>Tambah Buku Baru Pengganti Buku Hilang</h2>
                 </div>
             </section>
         </div>
@@ -52,6 +53,21 @@ $(document).ready(function() {
                     <section class="content">
                         <div class="card card-primary card-outline">
                             <div class="card-body">
+                                <div class="form-group{{ $errors->has('kode_transaksi') ? ' has-error' : '' }}">
+                                    <label>Kode Transaksi :</label>
+                
+                                    <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-paperclip"></i></span>
+                                    </div>
+                                    <input id="nim" name="nim"  value="{{ $data->kode_transaksi }}" required type="text" class="form-control" data-mask disabled placeholder="Kode Transaksi">
+                                    @if ($errors->has('kode_transaksi'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->kode_transaksi }}</strong>
+                                    </span>
+                                    @endif
+                                    </div>
+                                </div>
                                 <div class="form-group{{ $errors->has('judul') ? ' has-error' : '' }}">
                                     <label>Judul :</label>
                 
@@ -189,7 +205,7 @@ $(document).ready(function() {
                             </div>
 
                             <div class="card-footer">
-                                <a href="{{route('buku.index')}}">
+                                <a href="{{route('transaksihilang')}}">
                                     <button type="submit" class="btn btn-success btn-block" id="submit">Tambah</button>
                                 </a>
                             </div>

@@ -89,14 +89,14 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createNewBook()
+    public function createNewBook(Request $request, $id)
     {
         if(Auth::user()->level == 'user'){
             Alert::info('Oppss..', 'Anda dilarang masuk ke halaman ini.');
             return redirect()->to('/');
         }
-
-        return view('transaksihilang.createbaru');
+        $data = Transaksi::findOrFail($id);
+        return view('transaksihilang.createbaru', compact('data'));
     }
 
     /**
@@ -137,7 +137,31 @@ class TransaksiController extends Controller
 
         alert()->success('Berhasil.','Data telah ditambahkan!');
 
-        return redirect()->route('transaksi.indexhilang');
+        return redirect()->route('transaksihilang');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updategantibuku(Request $request, $id)
+    {
+        $transaksi = Transaksi::find($id);
+
+        $transaksi->update([
+                'status' => 'kembali'
+                ]);
+
+        $transaksi->buku->where('id', $transaksi->buku->id)
+                        ->update([
+                            'jumlah_buku' => ($transaksi->buku->jumlah_buku),
+                            ]);
+
+        alert()->success('Berhasil.','Data telah diubah!');
+        return redirect()->route('transaksihilang');
     }
 
     /**

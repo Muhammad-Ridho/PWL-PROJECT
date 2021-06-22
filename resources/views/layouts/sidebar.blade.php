@@ -82,12 +82,14 @@
                 <p>Transaksi Peminjaman</p>
               </a>
             </li>
+            @if(Auth::user()->level == 'admin')
             <li class="nav-item">
               <a href="{{route('transaksihilang')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Transaksi Keterlambatan</p>
               </a>
             </li>
+            @endif
           </ul>
         </li>
         @if(Auth::user()->level == 'admin')

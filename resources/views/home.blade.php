@@ -71,5 +71,6 @@
           <!-- ./col -->
         </div>
     </div>
+
 </div>
 @endsection

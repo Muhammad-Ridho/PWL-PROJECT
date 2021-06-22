@@ -30,9 +30,9 @@
                 <br>
                 @if(Auth::user()->level == 'admin')
                     <div class="card-body row">
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <a href="{{url('laporan/buku/pdf')}}">
-                                <button type="button" class="btn btn-primary btn-block">Cetak Pdf </button>
+                                <button type="button" class="btn btn-primary btn-block"><i class="fa fa-bars"></i> Cetak Pdf </button>
                             </a>
                         </div>
                     </div>

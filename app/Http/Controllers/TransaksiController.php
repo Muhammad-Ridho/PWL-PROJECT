@@ -25,7 +25,7 @@ class TransaksiController extends Controller
 
     public function index()
     {
-        if(Auth::user()->level == 'user')
+        if(Auth::user()->level == 'anggota')
         {
             $datas = Transaksi::where('anggota_id', Auth::user()->anggota->id)
                                 ->get();
@@ -74,7 +74,7 @@ class TransaksiController extends Controller
     
     public function indexhilang()
     {
-        if(Auth::user()->level == 'user')
+        if(Auth::user()->level == 'anggota')
         {
             $datas = Transaksi::where('anggota_id', Auth::user()->anggota->id)
                                 ->get();

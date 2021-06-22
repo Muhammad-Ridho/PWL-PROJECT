@@ -86,7 +86,7 @@
             <li class="nav-item">
               <a href="{{route('transaksihilang')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Transaksi Keterlambatan</p>
+                <p>Transaksi Kehilangan Buku</p>
               </a>
             </li>
             @endif

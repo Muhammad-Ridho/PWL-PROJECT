@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Anggota;
 use App\Models\Buku;
 use App\Models\Transaksi;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -66,6 +67,106 @@ class TransaksiController extends Controller
         $anggotas = Anggota::get();
         return view('transaksi.create', compact('bukus', 'kode', 'anggotas'));
     }
+
+    /**
+     *  TRANSAKSI HILANG
+     */
+    
+    public function indexhilang()
+    {
+        if(Auth::user()->level == 'user')
+        {
+            $datas = Transaksi::where('anggota_id', Auth::user()->anggota->id)
+                                ->get();
+        } else {
+            $datas = Transaksi::where('status','hilang')->get();
+        }
+        return view('transaksihilang.index', compact('datas'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createNewBook(Request $request, $id)
+    {
+        if(Auth::user()->level == 'user'){
+            Alert::info('Oppss..', 'Anda dilarang masuk ke halaman ini.');
+            return redirect()->to('/');
+        }
+        $data = Transaksi::findOrFail($id);
+        return view('transaksihilang.createbaru', compact('data'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeNewBook(Request $request)
+    {
+        $this->validate($request, [
+            'judul' => 'required|string|max:255',
+            'isbn' => 'required|string'
+        ]);
+
+        if($request->file('cover')){
+            $file = $request->file('cover');
+            $dt = Carbon::now();
+            $acak = $file->getClientOriginalExtension();
+            $fileName = rand(11111, 99999).'-'.$dt->format('Y-m-d-H-i-s').'.'.$acak;
+            $request->file('cover')->move("images/buku", $fileName);
+            $cover = $fileName;
+        }else{
+            $cover = NULL;
+        }
+        
+        Buku::create([
+            'judul' => $request->get('judul'),
+            'isbn' => $request->get('isbn'),
+            'pengarang' => $request->get('pengarang'),
+            'penerbit' => $request->get('penerbit'),
+            'tahun_terbit' => $request->get('tahun_terbit'),
+            'jumlah_buku' => $request->get('jumlah_buku'),
+            'deskripsi' => $request->get('deskripsi'),
+            'lokasi' => $request->get('lokasi'),
+            'cover' => $cover
+        ]);
+
+        alert()->success('Berhasil.','Data telah ditambahkan!');
+
+        return redirect()->route('transaksihilang');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updategantibuku(Request $request, $id)
+    {
+        $transaksi = Transaksi::find($id);
+
+        $transaksi->update([
+                'status' => 'kembali'
+                ]);
+
+        $transaksi->buku->where('id', $transaksi->buku->id)
+                        ->update([
+                            'jumlah_buku' => ($transaksi->buku->jumlah_buku),
+                            ]);
+
+        alert()->success('Berhasil.','Data telah diubah!');
+        return redirect()->route('transaksihilang');
+    }
+
+    /**
+     *  END TRANSAKSI HILANG
+     */
 
     /**
      * Store a newly created resource in storage.

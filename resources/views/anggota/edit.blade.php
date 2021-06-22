@@ -88,7 +88,7 @@ $(document).ready(function() {
                                         <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                         </div>
-                                        <input id="tgl_lahir" name="tgl_lahir"  value="{{ $data->tgl_lahir }}" required type="text" class="form-control" data-mask placeholder="dd/mm/yyyy">
+                                        <input id="tgl_lahir" name="tgl_lahir"  value="{{ $data->tgl_lahir }}" required type="date" class="form-control" data-mask placeholder="dd/mm/yyyy">
                                         @if ($errors->has('tgl_lahir'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('tgl_lahir') }}</strong>

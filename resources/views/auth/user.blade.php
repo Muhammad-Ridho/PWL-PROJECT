@@ -41,6 +41,11 @@
   <a href="{{ route('user.create') }}" class="btn btn-outline-primary btn-block"><i class="fa fa-plus"></i> Tambah User</a>
 </div>
 <br>
+@if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+@endif
 <!-- RESPONSIVE HOVER TABLE -->
 <div class="content">
   <div class="row">
